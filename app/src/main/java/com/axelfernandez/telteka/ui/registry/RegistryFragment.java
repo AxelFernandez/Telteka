@@ -18,7 +18,7 @@ import com.axelfernandez.telteka.R;
 import com.axelfernandez.telteka.adapters.RegistryAdapter;
 import com.axelfernandez.telteka.interfaces.IOnBackPressed;
 import com.axelfernandez.telteka.model.Registry;
-import com.axelfernandez.telteka.ui.registry.RegistryViewModel;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,7 +64,7 @@ public class RegistryFragment extends Fragment implements IOnBackPressed {
         adapter = new RegistryAdapter(getContext(), registry);
         rv.setAdapter(adapter);
         if (adapter.getItemCount() == 0){
-            getMovieArticles();
+            getRegistry();
         }else{
             progressBar.setVisibility(View.GONE);
         }
@@ -72,7 +72,7 @@ public class RegistryFragment extends Fragment implements IOnBackPressed {
 
     }
 
-    private void getMovieArticles() {
+    private void getRegistry() {
         mViewModel.getCategoryResponseLiveData().observe(getActivity(), registryResponse -> {
             if (registryResponse != null) {
                 progressBar.setVisibility(View.GONE);

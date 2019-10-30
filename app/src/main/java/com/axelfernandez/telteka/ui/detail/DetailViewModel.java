@@ -1,4 +1,4 @@
-package com.axelfernandez.telteka.ui.registry;
+package com.axelfernandez.telteka.ui.detail;
 
 import android.app.Application;
 
@@ -15,7 +15,7 @@ import com.axelfernandez.telteka.response.RegistryResponse;
 public class DetailViewModel extends AndroidViewModel {
 
     private DetailRepository detailRepository;
-    private LiveData<Registry> detailResponse;
+    private LiveData<RegistryResponse> detailResponse;
     private String idCategory;
     private Application application;
 
@@ -26,7 +26,7 @@ public class DetailViewModel extends AndroidViewModel {
 
 
     }
-    public LiveData<Registry> getDetailResponseLiveData() {
+    public LiveData<RegistryResponse> getDetailResponseLiveData() {
         return detailResponse;
     }
     public void init(){

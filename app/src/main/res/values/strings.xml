@@ -3,6 +3,8 @@
     <string name="categortySelected">categortySelected</string>
     <string name="category">categories</string>
     <string name="registryfromCategory">registryfromCategory</string>
+    <string name="registryFromId">registryFromId</string>
+
 
     <string name="urlImage">http://telteka.com.ar/assets/uploads/files/</string>
 </resources>

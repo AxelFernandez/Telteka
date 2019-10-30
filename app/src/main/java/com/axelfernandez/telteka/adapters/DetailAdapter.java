@@ -61,7 +61,7 @@ public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.DetailView
 
     @Override
     public int getItemCount() {
-        return 1;
+        return registries == null ? 0 : 1 ;
     }
 
     public static class DetailViewHolder extends RecyclerView.ViewHolder{

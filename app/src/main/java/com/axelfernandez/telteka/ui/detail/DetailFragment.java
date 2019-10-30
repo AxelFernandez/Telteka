@@ -17,14 +17,8 @@ import android.widget.ProgressBar;
 
 import com.axelfernandez.telteka.R;
 import com.axelfernandez.telteka.adapters.DetailAdapter;
-import com.axelfernandez.telteka.adapters.RegistryAdapter;
 import com.axelfernandez.telteka.model.Registry;
-import com.axelfernandez.telteka.ui.registry.DetailViewModel;
 import com.axelfernandez.telteka.ui.registry.RegistryFragment;
-import com.axelfernandez.telteka.ui.registry.RegistryViewModel;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class DetailFragment extends Fragment {
     private DetailViewModel mViewModel;
@@ -67,7 +61,7 @@ public class DetailFragment extends Fragment {
         adapter = new DetailAdapter(getContext(), registry);
         rv.setAdapter(adapter);
         if (adapter.getItemCount() == 0){
-            getMovieArticles();
+            getDetails();
         }else{
             progressBar.setVisibility(View.GONE);
         }
@@ -75,13 +69,14 @@ public class DetailFragment extends Fragment {
 
     }
 
-    private void getMovieArticles() {
+    private void getDetails() {
         mViewModel.getDetailResponseLiveData().observe(getActivity(), registryResponse -> {
             if (registryResponse != null) {
                 progressBar.setVisibility(View.GONE);
-                Registry articles = registryResponse;
+                Registry articles = registryResponse.getRegistries().get(0);
                 registry = articles;
                 adapter.notifyDataSetChanged();
+
             }
         });
     }
