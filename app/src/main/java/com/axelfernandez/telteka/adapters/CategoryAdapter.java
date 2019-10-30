@@ -1,6 +1,8 @@
 package com.axelfernandez.telteka.adapters;
 
 import android.content.Context;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.axelfernandez.telteka.R;
 import com.axelfernandez.telteka.model.Category;
+import com.axelfernandez.telteka.ui.main.MainFragment;
 import com.axelfernandez.telteka.ui.registry.RegistryFragment;
 
 import java.util.List;
@@ -37,15 +40,16 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     @Override
     public void onBindViewHolder(@NonNull CategoryViewHolder holder, int position) {
         Category category = categories.get(position);
+        Log.e("Fuuck", String.valueOf(category.isHadChildren()));
         holder.category.setText(category.getDescription());
-        holder.cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AppCompatActivity activity = (AppCompatActivity) v.getContext();
-                RegistryFragment registryFragment = new RegistryFragment();
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.container, registryFragment).addToBackStack(null).commit();
+        holder.cardView.setOnClickListener(v -> {
+            AppCompatActivity activity = (AppCompatActivity) v.getContext();
+            MainFragment registryFragment = new MainFragment();
+            Bundle bundle = new Bundle();
+            bundle.putString(activity.getResources().getString(R.string.categortySelected),category.getIdcategory());
+            registryFragment.setArguments(bundle);
+            activity.getSupportFragmentManager().beginTransaction().replace(R.id.container, registryFragment).addToBackStack(null).commit();
 
-            }
         });
     }
 

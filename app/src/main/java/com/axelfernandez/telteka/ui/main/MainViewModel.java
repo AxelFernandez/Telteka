@@ -14,12 +14,17 @@ public class MainViewModel extends AndroidViewModel {
 
     private CategoryRepository categoryRepository;
     private LiveData<CategoryResponse> categoryResponseLiveData;
-
+    private Application application;
 
     public MainViewModel(@NonNull Application application) {
         super(application);
+        this.application = application;
 
-        categoryRepository = new CategoryRepository(application);
+    }
+
+    public void init(String id){
+
+        categoryRepository = new CategoryRepository(application,id);
         categoryResponseLiveData = categoryRepository.getCategories();
 
     }

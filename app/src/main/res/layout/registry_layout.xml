@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 <androidx.cardview.widget.CardView
     android:layout_marginTop="10dp"
     android:layout_marginLeft="10dp"
@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <ImageView
-            android:id="@+id/item_noticias_imagen"
+            android:id="@+id/item_image"
             android:layout_width="100dp"
             android:layout_height="80dp"
             android:layout_marginTop="10dp"
@@ -29,37 +29,37 @@
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="10dp"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@id/item_noticias_imagen"
+            android:layout_toLeftOf="@id/item_image"
             android:layout_marginTop="10dp"
             android:textColor="#000000"
             android:textSize="18sp"
-            android:id="@+id/item_noticias_titulo"
+            android:id="@+id/item_title"
             tools:text="Ciclovía en Jocolí Viejo para un tránsito seguro"/>
         <TextView
             android:layout_width="210dp"
-            android:id="@+id/item_noticias_copete"
+            android:id="@+id/item_cop"
             android:layout_marginTop="10dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/item_noticias_titulo"
+            android:layout_below="@id/item_title"
             android:ellipsize="end"
             android:layout_marginLeft="10dp"
             android:layout_marginBottom="10dp"
             android:maxLines="4"
             tools:text="La Municipalidad de Lavalle recuerda a la escuelas primarias del departamento que hasta el jueves 7-09 se recepcionarán los trabajos del Primer Concurso de dibujo “La Abeja y la Miel”, en el marco de la Expoapícola, que será del 8 al 10 de setiembre."/>
         <TextView
-            android:id="@+id/item_noticias_fecha"
+            android:id="@+id/item_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/item_noticias_imagen"
+            android:layout_below="@id/item_cop"
             android:layout_alignParentRight="true"
             android:layout_marginRight="10dp"
             tools:text="2017-07-25"/>
 
         <Button
-            android:id="@+id/item_noticias_noticiacompleta"
+            android:id="@+id/item_getDetail"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_below="@id/item_noticias_fecha"
+            android:layout_below="@id/item_date"
             android:layout_marginTop="10dp"
             android:text="Leer Nota"
             android:layout_marginBottom="10dp"/>

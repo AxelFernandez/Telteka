@@ -4,6 +4,16 @@ public class Category {
 
     String idcategory;
     String description;
+    String hadChildren;
+
+
+    public String isHadChildren() {
+        return hadChildren;
+    }
+
+    public void setHadChildren(String hadChildren) {
+        this.hadChildren = hadChildren;
+    }
 
     public String getIdcategory() {
         return idcategory;

@@ -1,9 +1,11 @@
 package com.axelfernandez.telteka;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 
+import com.axelfernandez.telteka.interfaces.IOnBackPressed;
 import com.axelfernandez.telteka.ui.main.MainFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -16,6 +18,13 @@ public class MainActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.container, MainFragment.newInstance())
                     .commitNow();
+        }
+    }
+    @Override
+    public void onBackPressed() {
+        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.container);
+        if (!(fragment instanceof IOnBackPressed) || !((IOnBackPressed) fragment).onBackPressed()) {
+            super.onBackPressed();
         }
     }
 }

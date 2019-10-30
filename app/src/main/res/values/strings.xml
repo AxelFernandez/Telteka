@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Telteka</string>
+    <string name="categortySelected">categortySelected</string>
+    <string name="category">categories</string>
+    <string name="registryfromCategory">registryfromCategory</string>
+
+    <string name="urlImage">http://telteka.com.ar/assets/uploads/files/</string>
 </resources>

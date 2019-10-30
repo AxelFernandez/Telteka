@@ -1,35 +1,38 @@
-package com.axelfernandez.telteka.ui.registry;
+package com.axelfernandez.telteka.ui.detail;
+
+import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.axelfernandez.telteka.R;
+import com.axelfernandez.telteka.adapters.DetailAdapter;
 import com.axelfernandez.telteka.adapters.RegistryAdapter;
-import com.axelfernandez.telteka.interfaces.IOnBackPressed;
 import com.axelfernandez.telteka.model.Registry;
+import com.axelfernandez.telteka.ui.registry.DetailViewModel;
+import com.axelfernandez.telteka.ui.registry.RegistryFragment;
 import com.axelfernandez.telteka.ui.registry.RegistryViewModel;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class RegistryFragment extends Fragment implements IOnBackPressed {
-
-    private RegistryViewModel mViewModel;
+public class DetailFragment extends Fragment {
+    private DetailViewModel mViewModel;
     private View v;
     private ProgressBar progressBar;
     private LinearLayoutManager layoutManager;
-    private RegistryAdapter adapter;
-    private ArrayList<Registry> registry = new ArrayList<>();
+    private DetailAdapter adapter;
+    private Registry registry;
     RecyclerView rv;
     public static RegistryFragment newInstance() {
         return new RegistryFragment();
@@ -46,7 +49,7 @@ public class RegistryFragment extends Fragment implements IOnBackPressed {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(RegistryViewModel.class);
+        mViewModel = ViewModelProviders.of(this).get(DetailViewModel.class);
         Bundle bundle = this.getArguments();
         if (bundle != null) {
             String idCategory = bundle.getString(getString(R.string.categortySelected));
@@ -61,7 +64,7 @@ public class RegistryFragment extends Fragment implements IOnBackPressed {
         layoutManager = new LinearLayoutManager(getContext());
         rv.setLayoutManager(layoutManager);
 
-        adapter = new RegistryAdapter(getContext(), registry);
+        adapter = new DetailAdapter(getContext(), registry);
         rv.setAdapter(adapter);
         if (adapter.getItemCount() == 0){
             getMovieArticles();
@@ -73,21 +76,15 @@ public class RegistryFragment extends Fragment implements IOnBackPressed {
     }
 
     private void getMovieArticles() {
-        mViewModel.getCategoryResponseLiveData().observe(getActivity(), registryResponse -> {
+        mViewModel.getDetailResponseLiveData().observe(getActivity(), registryResponse -> {
             if (registryResponse != null) {
                 progressBar.setVisibility(View.GONE);
-                List<Registry> articles = registryResponse.getRegistries();
-                registry.addAll(articles);
+                Registry articles = registryResponse;
+                registry = articles;
                 adapter.notifyDataSetChanged();
             }
         });
     }
 
 
-    @Override
-    public boolean onBackPressed() {
-        FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.popBackStack(fragmentManager.getBackStackEntryAt(fragmentManager.getBackStackEntryCount()-2).getId(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
-        return true;
-    }
 }

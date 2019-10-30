@@ -11,6 +11,18 @@ public class CategoryResponse {
     @Expose
     private List<Category> categories;
 
+    @SerializedName("hadChildren")
+    @Expose
+    private String hasChildren;
+
+    public String isHasChildren() {
+        return hasChildren;
+    }
+
+    public void setHasChildren(String hasChildren) {
+        this.hasChildren = hasChildren;
+    }
+
     public List<Category> getCategories() {
         return categories;
     }
