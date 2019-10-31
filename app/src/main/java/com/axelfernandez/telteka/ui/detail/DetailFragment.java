@@ -24,6 +24,8 @@ import com.axelfernandez.telteka.model.Registry;
 import com.axelfernandez.telteka.ui.registry.RegistryFragment;
 import com.squareup.picasso.Picasso;
 
+import org.apache.commons.text.StringEscapeUtils;
+
 public class DetailFragment extends Fragment {
     private DetailViewModel mViewModel;
     private View v;
@@ -75,7 +77,7 @@ public class DetailFragment extends Fragment {
                 Registry detail = registryResponse.getRegistries().get(0);
                 title.setText(detail.getTitle());
                 Picasso.get().load(getContext().getResources().getString(R.string.urlImage)+detail.getImage()).into(imageView);
-                body.setText(detail.getDescription());
+                body.setText(StringEscapeUtils.unescapeHtml4(detail.getDescription()));
                 progressBar.setVisibility(View.GONE);
 
             }

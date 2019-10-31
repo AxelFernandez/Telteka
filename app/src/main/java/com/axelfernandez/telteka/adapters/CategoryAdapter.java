@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.axelfernandez.telteka.R;
 import com.axelfernandez.telteka.model.Category;
 import com.axelfernandez.telteka.ui.main.MainFragment;
-import com.axelfernandez.telteka.ui.registry.RegistryFragment;
 
 import java.util.List;
 

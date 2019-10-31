@@ -2,6 +2,7 @@ package com.axelfernandez.telteka.adapters;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import com.axelfernandez.telteka.model.Category;
 import com.axelfernandez.telteka.model.Registry;
 import com.axelfernandez.telteka.ui.detail.DetailFragment;
 import com.squareup.picasso.Picasso;
+import org.apache.commons.text.StringEscapeUtils;
 
 import java.util.List;
 
@@ -46,7 +48,7 @@ public class RegistryAdapter extends RecyclerView.Adapter<RegistryAdapter.Regist
         Registry registry = registries.get(position);
         holder.title.setText(registry.getTitle());
         Picasso.get().load(context.getResources().getString(R.string.urlImage)+registry.getImage()).into(holder.imageView);
-        holder.cop.setText(registry.getDescription());
+        holder.cop.setText(StringEscapeUtils.unescapeHtml4(registry.getDescription()));
         holder.date.setText(registry.getInsertDate());
         holder.getDetail.setOnClickListener(v -> {
 
