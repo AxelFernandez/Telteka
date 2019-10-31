@@ -41,11 +41,11 @@ public class DetailRepository {
 
     public LiveData<RegistryResponse> getCategories(){
         final MutableLiveData<RegistryResponse>data = new MutableLiveData();
-        apiDetail.getDetail(context.getResources().getString(R.string.registryFromId)+ "/"+ idRegistry).enqueue(new Callback<RegistryResponse>() {
+        apiDetail.getDetail(context.getResources().getString(R.string.registryFrom)+ "/"+ idRegistry).enqueue(new Callback<RegistryResponse>() {
             @Override
             public void onResponse(Call<RegistryResponse> call, Response<RegistryResponse> response) {
                 Log.d(TAG, "onResponse response:: " + response);
-                Log.d(TAG, "onResponse Body:: " + response.body());
+                Log.d(TAG, "onResponse Body:: " + response.body().getRegistries().get(0).getDescription());
                 if (response.body() != null){
                     data.setValue(response.body());
                 }
